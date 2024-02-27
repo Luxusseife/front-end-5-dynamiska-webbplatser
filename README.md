@@ -10,6 +10,7 @@ Syftet är också att använda FetchAPI-anrop ihop med async/await för att häm
 
 1. Klona ner repot med den redan uppbyggda webbplatsen från moment 4 med förberedd utvecklingsmiljö från Github.
 2. Förbereda utvecklingsmiljön för aktuellt projekt.
-4. Skapa grunden för undersidorna som ska innehålla diagram och karta.
+3. Skapa grunden för undersidorna som ska innehålla diagram och karta.
+4. Skapa innehåll för undersidan Diagram. Installera chart.js och skapa diagram med HTML-elementet _canvas_ och JS-funktionen _new Chart()_.
 
 #### _Skapad av Jenny Lind, jeli2308_.
