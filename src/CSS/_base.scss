@@ -1,0 +1,73 @@
+// Normalisering.
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Typsnitt.
+$font-stack: "anona", sans-serif;
+
+// Färger.
+$black: #000000;
+$white: #ffffff;
+
+// Färger, ljust tema.
+$primary-color: #e3f5eb;
+$secondary-color: #3c5c4f;
+
+// Färger, mörkt tema.
+$primary-dark-color: darken($secondary-color, 5%);
+$secondary-dark-color: darken($secondary-color, 15%);
+
+// Mixin för flex, centering. 
+@mixin center-flex {
+    display: flex;
+    align-items: center;
+}
+
+// Mixin för radhöjd och radlängd.
+@mixin line-height-length {
+    line-height: 1.6;
+    max-width: 55ch;
+}
+
+// Mixin för text-skugga. 
+@mixin text-shadow {
+    text-shadow: 2px 4px 3px $black;
+}
+
+// Mixins för grid-containers.
+@mixin grid-container-small {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    row-gap: 2rem;
+    place-items: center;
+}
+
+@mixin grid-container-large {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    place-items: start center;
+    margin: 0 0 5rem 0;
+}
+
+// Mixin för bilder.
+@mixin images {
+    border-radius: 5%;
+    box-shadow: 10px 10px 20px $black;
+    width: 100%;
+    height: auto;
+    max-width: 250px;
+}
+
+// Mixin för borderfärg på bilder.
+@mixin border ($border, $picture) {
+    border: $border solid darken($primary-color, 75%);
+
+    @if $picture {
+       border: $border solid lighten($secondary-color, 15%); 
+    }
+}

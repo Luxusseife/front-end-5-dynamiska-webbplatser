@@ -1,0 +1,117 @@
+@use 'base' as *;
+
+/* Dropdown, utfälld meny som visas vid meny-klick. */
+nav {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 150px;
+    background-color: $secondary-color;
+    font-size: 1.4rem;
+    width: 300px;
+    height: 425px;
+    z-index: 1;
+
+    ul {
+        list-style-type: none;
+        text-align: center;
+        width: 100%;
+        margin: 0 20px 0 auto;
+        padding: 0;
+    }
+
+    li {
+        width: 100%;
+        padding: 1rem 0;
+
+        &:hover {
+            @include text-shadow;
+            background-color: lighten($secondary-color, 5%);
+        }
+    }
+
+    a {
+        color: $primary-color;
+        padding: 20px 50px;
+        text-decoration: none;
+        font-size: 24px;
+
+        &:hover {
+            @include text-shadow;
+            color: $primary-color;
+            text-decoration: none;
+        }
+    }
+}
+
+/* Meny-knapp, öppnar menyn nav. */
+.menu-btn {
+    @include center-flex;
+    background-color: lighten($secondary-color, 5%);
+    cursor: pointer;
+    padding: 10px 10px;
+
+    &:hover {
+        @include text-shadow;
+    }
+}
+
+.open {
+    margin: 0 5% 0 0;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+
+    &:hover {
+     box-shadow: 0 1px 15px 5px lighten($black, 15%);
+    }
+}
+
+.menu-icon {
+    margin-right: 5px;
+}
+
+/* Hamburger-ikon, tre svarta streck. */
+.bars {
+    display: block;
+    background-color: $primary-color;
+    width: 20px;
+    height: 3px;
+    margin: 5px 0;
+}
+
+/* Meny-text; MENY och STÄNG. */
+.menu-text {
+    color: $primary-color;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Meny-knapp, stänger den utfällda menyn. */
+.close {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    padding: 14px 10px;
+    border: none;
+    border: 1px solid $secondary-color;
+    border-radius: 5px;
+
+    &:hover {
+        box-shadow: 0 1px 15px 5px lighten($black, 15%);
+    }
+}
+
+/* Stäng-ikon, två lodräta streck som roterar till ett kryss. */
+.cross1 {
+    width: 25px;
+    transform: rotate(45deg);
+    position: relative;
+    top: 5px;
+}
+
+.cross2 {
+    @extend .cross1;
+    transform: rotate(135deg);
+    top: -3px;
+}

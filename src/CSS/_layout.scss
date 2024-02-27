@@ -1,0 +1,287 @@
+@use 'base' as *;
+@use 'component' as *;
+@use 'keyframes';
+
+
+/* Body och färgstandard för ljust färgtema.*/
+body {
+    font: 100% $font-stack;
+    background-color: $primary-color;
+    color: $secondary-color;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header inkl. logotyp. */
+header {
+    @include center-flex;
+    justify-content: space-between;
+    background-color: $secondary-color;
+    color: $primary-color;
+    width: 100%;
+    height: 150px;
+    margin: 0;
+    box-shadow: 0 3px 20px 10px lighten($black, 15%);
+
+    #logo {
+        padding: 0 0 0 50px;
+        max-width: 170px;
+        height: auto;
+    }
+
+    /* Logotyp, utökad storlek vid min-bredd 375px. */
+    @media (min-width: 375px) {
+        #logo {
+            max-width: 270px;
+            height: auto;
+        }
+    }
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    width: 100%;
+    height: 100px;
+    background-color: $secondary-color;
+    color: $primary-color;
+    text-align: center;
+    line-height: 1.6;
+    padding: 1rem 0 0 0;
+}
+
+/* Mobil-meny, ändras till vanlig meny vid min-bredd 992px. */
+@media (min-width: 992px) {
+
+    /* Header. */
+    header {
+        @include center-flex;
+        justify-content: space-between;
+        background-color: $secondary-color;
+        height: 150px;
+        margin: 0;
+    }
+
+    /* Meny-knapp som ej syns. */
+    .menu-btn {
+        display: none;
+    }
+
+    #open-menu {
+        display: none !important;
+    }
+
+    /* Ändring för vanlig nav-meny. */
+    nav {
+        display: block !important;
+        position: static;
+        height: auto;
+        font-size: 1.4rem;
+        width: auto;
+
+        ul {
+            height: 100%;
+        }
+
+        li {
+            display: inline;
+            padding: 1rem;
+
+            &:hover {
+                text-decoration: none;
+                color: $primary-color;
+                border-radius: 5px;
+            }
+        }
+
+        a {
+            background-color: transparent;
+            border: none;
+            color: $primary-color;
+            padding: 20px 0;
+            margin: 0 0.5rem 0 0.5rem;
+            box-shadow: none;
+            text-decoration: none;
+            font-size: 22px;
+
+            &:hover {
+                @include text-shadow;
+                color: $primary-color;
+                text-decoration: none;
+            }
+        }  
+    }
+}
+
+/* Rubriker. */
+h1 {
+    text-align: center;
+    margin: 3rem 0 3rem 0;
+}
+
+h2 {
+    margin: 2rem 0 0.5rem 0;
+}
+
+/* Index-sidan och SASS-sidan. */
+.grid-container-index, .grid-container-sass {
+    @include grid-container-small;
+
+    .grid-item-1-index {
+        .img {
+            @include images;
+            @include border (10px, false);
+        }
+    }
+
+    .grid-item-1-sass {
+        .img {
+            @include images;
+            @include border (10px, true);
+        }
+    }
+
+    .grid-item-2-index, .grid-item-2-sass {
+        padding: 0 1rem 0 1rem;
+        @include line-height-length;
+        margin: -2rem 0 2rem 0;
+
+        ul {
+            padding-left: 2rem;
+        }
+    }
+}
+
+/* Animerings-sidan. */
+
+// Rubrik med hover-effekt.
+.heading {
+    cursor: pointer;
+    transition: all 0.25s linear;
+
+
+    &:hover {
+        letter-spacing: 15px;
+        text-shadow: 5px 5px 5px lightgreen;
+    }
+}
+
+// Grid-container.
+.grid-container-animation {
+    @include grid-container-small;
+    margin-bottom: 3rem;
+}
+
+// Kvadrat som blir en cirkel.
+.circle {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    animation: circle 2s 1s infinite alternate;
+
+    .text {
+        text-align: center;
+        padding-top: 80px;
+        font-size: 40px;
+        animation: text 2s 1s infinite alternate;
+    }
+}
+
+// Färghjul med snurrande hover-effekt.
+.wheel {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    cursor: pointer;
+    
+    &:hover {
+        animation: wheel 0.25s infinite linear;
+    }
+}
+
+// Chokladpralin som rör sig.
+.choco {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    animation: choco 5s infinite linear; 
+}
+
+/* Index-, SASS- och animerings-sidan, ändras till två kolumner vid min-bredd 992px. */
+@media (min-width: 992px) {
+
+    h1 {
+        margin: 5rem 0 6rem 0;
+    }
+
+    .grid-container-index, .grid-container-sass {
+        @include grid-container-large;
+
+        .grid-item-1-index, .grid-item-1-sass {
+            .img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    .grid-container-animation {
+        @include grid-container-large;
+
+        .wheel {
+            margin: 0 auto;
+        }
+    }
+}
+
+/* Media-query för mörkt färgtema, gäller samtliga sidor. */
+@media (prefers-color-scheme:dark) {
+
+    body {
+        background-color: $primary-dark-color;
+        color: $secondary-dark-color;
+    }
+
+    header {
+        box-shadow: 0 3px 20px 10px lighten($black, 5%);
+    }
+
+    header, footer, nav ul {
+        background-color: $secondary-dark-color;
+    }
+
+    @media (max-width: 991px) {
+        nav {
+            background-color: $secondary-dark-color;
+        }
+    }
+
+    nav li {
+        color: $primary-color; 
+
+        &:hover {
+            background-color: darken($primary-dark-color, 5%);
+        }
+    }
+
+    nav a {
+        color: $primary-color;
+    }
+
+    .close {
+        box-shadow: 0 50px 0 92.5px $secondary-dark-color;
+    }
+
+    h1, h2, .grid-item-2-index p, .grid-item-2-index ul, .grid-item-2-sass p {
+        color: $primary-color;
+    }
+
+    h1, h2 {
+        @include text-shadow;
+    }
+
+    .grid-container-index .grid-item-1-index .img, .grid-container-sass .grid-item-1-sass .img {
+        border: 10px solid $primary-color;
+    }
+}
+

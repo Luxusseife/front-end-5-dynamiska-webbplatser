@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moment 3, SASS</title>
+
+    <link rel="stylesheet" href="CSS/main.scss" type="text/css">
+    <link rel="stylesheet" href="https://use.typekit.net/awb0vvp.css">
+    <script src="JS/main.js" type="module"></script>
+</head>
+<body>
+    <header class="header">
+        <a href="./index.html"><img id="logo" src="Assets/logo.png" alt="Logotyp"></a>
+
+        <!-- Menyknapp för att öppna mobilmenyn-->
+        <button class="menu-btn open" id="open-menu">
+            <span class="menu-icon">
+                <span class="bars"></span>
+                <span class="bars"></span>
+                <span class="bars"></span>
+            </span>
+            <span class="menu-text">MENY</span>
+        </button>
+
+        <!-- Navigering -->
+        <nav id="nav-menu">
+            <!-- Knapp som visas om mobilmenyn är utfälld -->
+            <button class="menu-btn close" id="close-menu">
+                <span class="menu-icon">
+                    <span class="bars cross1"></span>
+                    <span class="bars cross2"></span>
+                </span>
+                <span class="menu-text">STÄNG</span>
+            </button>
+            <ul>
+                <li><a href="./index.html">Startsida</a></li>
+                <li><a href="./SASS.html">SASS</a></li>
+                <li><a href="./animation.html">Animering</a></li>
+                <li><a href="./diagram.html">Diagram</a></li>
+                <li><a href="./map.html">Karta</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>SASS</h1>
+
+        <div class="grid-container-sass">
+            <picture class="grid-item-1-sass">
+                <source srcset="Assets/lake.jpg?as=webp&width=350" type="image/webp">
+                <source srcset="Assets/lake.jpg?width=350" type="image/jpg">
+                <img class="img" src="Assets/lake.jpg?width=350" alt="Ett barn plockar blåbär i skogen">
+            </picture>
+            <article class="grid-item-2-sass">
+                <h2>Mina tankar om arbetet med SASS</h2>
+                <p>
+                    I arbetet med SASS har jag förstått syftet och upptäckt hur smidigt 
+                    och smart det faktiskt är när jag slipper upprepa kod och ändra på 
+                    1000 ställen när ett eller flera attribut behöver regleras. Särskilt 
+                    color functions har varit en magisk grej och även mixins och nesting
+                    har visat sig vara kanon för att få till en DRY och överskådlig kod.
+                </p>
+                <br> 
+                <p>
+                    Trots att det varit spännande och kul att använda SASS så är det inte
+                    helt lätt, särskilt inte detta med if/else-satser och inheritance och 
+                    jag ser därför fram emot att lära mig mer om SASS och CSS-preprocessorer 
+                    och göra det till en smidig vana i kommande projekt.
+                </p>
+            </article>
+        </div>  
+    </main>
+    
+    <footer>
+        <p>
+            Laborationsuppgift för kursen DT211G, Frontend-baserad webbutveckling.
+            <br>
+            © 2024 Jenny Lind
+        </p>
+    </footer>
+</body>
+</html>
