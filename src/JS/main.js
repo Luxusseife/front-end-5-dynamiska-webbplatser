@@ -41,29 +41,38 @@ async function init() {
         const response = await fetch(url);
         const data = await response.json();
 
-        // Filtrerar och sorterar ut de 6 mest sökta kurserna från datan.
-        // Filtrerar ut kurser.
+        // Filtrerar ut kurser/program.
         const courses = data.filter(item => item.type === "Kurs");
-        // Sorterar kurserna efter totalt antal sökanden.
+        const programs = data.filter(item => item.type === "Program");
+
+        // Sorterar kurser/program efter totalt antal sökanden.
         const sortedCourses = courses.sort((a, b) => b.applicantsTotal - a.applicantsTotal);
-        // Plockar ut de 6 kurser med högst värden.
+        const sortedPrograms = programs.sort((a, b) => b.applicantsTotal - a.applicantsTotal);
+
+        // Plockar ut ett specifikt antal kurser/program med högst värden.
         const slicedCourses = sortedCourses.slice(0, 6);
-        // Skapar en ny array från de 6 kurser jag plockat ut, med kursnamn.
+        const slicedPrograms = sortedPrograms.slice(0, 5);
+
+        // Skapar nya arrayer från kurser/program jag plockat ut, med kursnamn.
         const courseNames = slicedCourses.map(item => item.name);
-        // Skapar en ny array från de 6 kurser jag plockat ut, med antal sökande för kurs.
+        const programNames = slicedPrograms.map(item => item.name);
+
+        // Skapar nya arrayer från kurser/program jag plockat ut, med antal sökande.
         const courseApplicantsTotal = slicedCourses.map(item => item.applicantsTotal);
+        const programApplicantsTotal = slicedPrograms.map(item => item.applicantsTotal);
 
         // Hämtar in canvas.
         const ctx = document.getElementById('myChartBar');
+        const ctx2 = document.getElementById('myChartPie');
 
-        // Skapar nytt diagram.
+        // Skapar nytt stapel-diagram.
         new Chart(ctx, {
             // Sätter type som bar för stapeldiagram.
             type: 'bar',
             data: {
                 labels: courseNames,
                 datasets: [{
-                    label: 'Mest sökta kurserna, totalt antal sökanden',
+                    label: ' Antal sökande',
                     data: courseApplicantsTotal,
                     borderWidth: 3,
                     // Byter färg på staplarna.
@@ -71,7 +80,7 @@ async function init() {
                 }]
             },
             options: {
-                // Tar bort kursnamn på y-axeln.
+                // Gömmer kursnamn på y-axeln.
                 scales: {
                     y: {
                         display: false,
@@ -80,11 +89,49 @@ async function init() {
                 },
                 // Vänder stapeldiagrammet till liggande.
                 indexAxis: "y",
+                // Gömmer legend, dvs. info om vad staplarna representerar.
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
             }
         });
-    } catch {
-        document.getElementsByClassName("chart-container").innerHTML = "<p>Diagrammet kunde inte laddas...</p>"
-    }
+
+        // Skapar nytt cirkel-diagram.
+        new Chart(ctx2, {
+            // Sätter type som pie för cirkeldiagram.
+            type: 'pie',
+            data: {
+                labels: programNames,
+                datasets: [{
+                    label: ' Antal sökande',
+                    data: programApplicantsTotal,
+                    borderWidth: 3,
+                    // Byter färg på "pajbitarna".
+                    backgroundColor: [
+                        'darkgray',
+                        '#72af96',
+                        'lightpink',
+                        'beige',
+                        'salmon'
+                      ],
+                }]
+            },
+            options: {
+                // Gömmer legend, dvs. info om vilken färg som hör till vilket program.
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Felmeddelande.
+        } catch {
+            document.getElementsByClassName("container-charts").innerHTML = "<p>Något gick fel, försök igen!</p>";
+        }
 } 
 
 // Anropar funktionen.

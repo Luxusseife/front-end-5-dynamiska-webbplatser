@@ -211,12 +211,23 @@ h2 {
 /* Diagram-sidan. */
 
 // Diagram-container.
-.grid-container-charts {
-    width: 90%;
+.container-charts {
     margin: 0 1rem;
+
+    #myChartBar {
+        margin: 2rem 0 5rem 0;
+    }
+
+    #myChartPie {
+        margin: 2rem 0 3rem 0;
+    }
+
+    h2 {
+        text-align: center;
+    }
 }
 
-/* Index-, SASS-, animerings- och diagramsidan, ändras till två kolumner vid min-bredd 992px. */
+/* Mediaquery för samtliga sidor, ändringar vid min-bredd 992px. */
 @media (min-width: 992px) {
 
     h1 {
@@ -241,9 +252,17 @@ h2 {
         }
     }
 
-    .grid-container-charts {
-        @include grid-container-large;
-        width: 75%;
+    .container-charts {
+        width: 50%;
+        margin: 0 auto;
+
+        #myChartPie {
+            width: 75%;
+        }
+
+        h2 {
+            font-size: 150%;
+        }
     }
 }
 
@@ -297,4 +316,3 @@ h2 {
         border: 10px solid $primary-color;
     }
 }
-
