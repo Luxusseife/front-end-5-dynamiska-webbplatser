@@ -208,7 +208,15 @@ h2 {
     animation: choco 5s infinite linear; 
 }
 
-/* Index-, SASS- och animerings-sidan, ändras till två kolumner vid min-bredd 992px. */
+/* Diagram-sidan. */
+
+// Diagram-container.
+.grid-container-charts {
+    width: 90%;
+    margin: 0 1rem;
+}
+
+/* Index-, SASS-, animerings- och diagramsidan, ändras till två kolumner vid min-bredd 992px. */
 @media (min-width: 992px) {
 
     h1 {
@@ -231,6 +239,11 @@ h2 {
         .wheel {
             margin: 0 auto;
         }
+    }
+
+    .grid-container-charts {
+        @include grid-container-large;
+        width: 75%;
     }
 }
 

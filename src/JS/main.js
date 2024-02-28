@@ -31,7 +31,7 @@ function toggleMenu() {
 // Funktion som körs vid sidladdning.
 window.onload = init;
 
-// Hämtar data från API och skriver ut i diagram.
+// Hämtar data från API och skriver ut i två olika diagram.
 async function init() {
     // Deklarerar variabler.
     const url = "https://studenter.miun.se/~mallar/dt211g/";
@@ -63,12 +63,21 @@ async function init() {
             data: {
                 labels: courseNames,
                 datasets: [{
-                    label: 'Antal sökanden',
+                    label: 'Mest sökta kurserna, totalt antal sökanden',
                     data: courseApplicantsTotal,
-                    borderWidth: 3
+                    borderWidth: 3,
+                    // Byter färg på staplarna.
+                    backgroundColor: ['#72af96', '#5c8e79']
                 }]
             },
             options: {
+                // Tar bort kursnamn på y-axeln.
+                scales: {
+                    y: {
+                        display: false,
+                        beginAtZero: true
+                    }
+                },
                 // Vänder stapeldiagrammet till liggande.
                 indexAxis: "y",
             }
