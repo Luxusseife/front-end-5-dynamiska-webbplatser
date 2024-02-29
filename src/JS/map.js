@@ -37,8 +37,9 @@ async function getData(searchInput) {
 
         // Felmeddelande
         } catch (error) {
+            document.getElementById("error").innerHTML = "Något gick fel, försök igen!";
             console.error("Kunde inte fetcha, följande felmeddelande skapades:", error);
-          }
+        }
 }
 
 // Kartvisnings-funktion.

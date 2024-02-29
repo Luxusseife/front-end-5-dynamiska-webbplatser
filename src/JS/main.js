@@ -129,8 +129,9 @@ async function init() {
         });
 
         // Felmeddelande.
-        } catch {
-            document.getElementsByClassName("container-charts").innerHTML = "<p>Något gick fel, försök igen!</p>";
+        } catch (error) {
+            document.getElementByClassName("container-charts").innerHTML = "<p>Något gick fel, försök igen!</p>";
+            console.error("Kunde inte fetcha, följande felmeddelande skapades:", error);
         }
 } 
 
