@@ -232,7 +232,6 @@ h2 {
 .container-search {
    @include grid-container-small;
 
-
     #search-input {
         width: 270px;
         height: 50px;
@@ -252,6 +251,12 @@ h2 {
         font-weight: bold;
         color: $secondary-color;
         justify-content: center;
+        cursor: pointer;
+    }
+
+    #search-button:hover {
+        background-color: darken($secondary-color, 5%);
+        color: $white;
     }
 }
 
