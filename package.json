@@ -16,6 +16,7 @@
     "sharp": "^0.31.3"
   },
   "dependencies": {
-    "chart.js": "^4.4.1"
+    "chart.js": "^4.4.1",
+    "leaflet": "^1.9.4"
   }
 }
